@@ -1,0 +1,56 @@
+model -> Mathematical tool that allows us to predct and at times explain a real world event
+
+computation methods -> algorithm that allows us to approximate a solution
+
+root finding
+goal: find all x such that f(x) = 0
+
+f(x) = x^2 + 5x + 6
+f(x) = (x + 3)(x + 2)
+x = -3, -2
+
+2 methods for approx root finding
+1. bracket/bracketing method
+2. open methods
+
+bracket method: function must be continious between a given interval. 
+Guarantees one, but doesnt necessarily get all.
+
+between [a, b] f(x) must be continious on [a, b]
+f(a) * f(b) < 0 ie a is below and b is above or vice versa
+
+get half point c = (a + b) / 2
+test if f(a) * f(c) < 0 or f(b) * f(c) < 0 and iterate
+
+f(x) = x^3 - 4x + 2
+a = 0, b = 1
+f(a) = 2, f(b) = -1 f(a)*f(b) = -2 < 0
+c = 0.5, f(c) = 0.125
+
+a = 0.5, b = 1
+c = 0.75, f(c) = -0.578
+
+a = 0.5, b = 0.75
+
+open method: nice to have -> a,b such that f(a) * f(b) < 0 (not required)
+
+fixed point -> is an x such that f(x) = x
+goal -> f(x) - x = 0
+
+goal for fixed point method: start with a value of x which will be our approx value of the root
+	we use fixed point method to find a better approx
+	
+find root for f(x) = x^3 + 5x - 5
+a = 0, b = 1, f(a) = -5, f(b) = 1 f(a) * f(b) < 0
+
+lets pick x = 0.75 (between 0 and 1)
+
+Change to fixed point problem
+g(x) = (5 - x^3) / 5 -> g(x) - x = f(x)
+g(x_n) = x_n+1
+
+g(x_16) = x_17
+g(x_16) - x_17 = 0 = F(x)
+
+
+
