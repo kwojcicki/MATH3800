@@ -10,7 +10,7 @@ f(x) = (x + 3)(x + 2)
 x = -3, -2
 
 2 methods for approx root finding
-1. bracket/bracketing method
+1. bracket/bracketing method (bisection method)
 2. open methods
 
 bracket method: function must be continious between a given interval. 
@@ -32,10 +32,12 @@ c = 0.75, f(c) = -0.578
 
 a = 0.5, b = 0.75
 
-open method: nice to have -> a,b such that f(a) * f(b) < 0 (not required)
+open method: fied point method nice to have -> a,b such that f(a) * f(b) < 0 (not required)
 
-fixed point -> is an x such that f(x) = x
+fixed point -> is an x such that g(x) = x
 goal -> f(x) - x = 0
+
+can always do F(x) = 0 => F(x) + x = x where F(x) + x = g(x)
 
 goal for fixed point method: start with a value of x which will be our approx value of the root
 	we use fixed point method to find a better approx
@@ -52,5 +54,143 @@ g(x_n) = x_n+1
 g(x_16) = x_17
 g(x_16) - x_17 = 0 = F(x)
 
+stop criteria
+	| X_n+1 - X_n | < E
+	or # of iterations
+	combination of the above two
+	
+F(x) = (cos x) - x = 0
+	cos x - x = 0
+	cos x = x
+	g(x) = cos x
+	
+x_0 = 1
+x_1 =  g(x_0) = cos x_0 = cos 1 = 0.5403
+x_2 = g(x_1) = 0.8575
+x_3 = 0.6543
+...
+x_24 = 0.7391
+x_25 = 0.7391
+
+Therefore we approximate the root to be r = 0.7391
+
+We can check r by plugging into F(X)
+
+F(x) = (e^-2x) * (x-1) = 0  (r = 1)
+
+g(x) = (e^-2x) * (x - 1) + x
+x_2 = 0.9870
+x_28 = -0.43377
+
+Therefore we appear to be diverging from the root
+
+Convergence
+	Let r be a root -> g(r) = r
+	Iteration x_n+1 = g(x_n)
+	
+Error
+	e_n = |x_n - r|
+	e_n+1 = |x_n+1 - r| = |g(x_n) - g(r)|, given alpha between X_n and r 
+		g`(alpha) = (g(x_n) - g(r)) / (x_n - r)
+		|g`(alpha)| = |(g(x_n) - g(r))| / |(x_n - r)|
+		     = e_n+1 / e_n
+
+If |g`(alpha)| < 1, then g(x) will converge to a fixed point -> converege to root of f(x)
+
+g(x) = (e^-2x) * (x-1) + x
+g`(x) = -2e^(-2x) * (x - 1) + e^-2x + 1
+x = r = 1
+g`(1) > 1
+
+
+Newtons method (newton raphson method)
+	Goal solve F(x) = 0
+	Find "very good" choice of g(x)
+	F(x) = 0, assume f`(x) != 0
+	F(x) / F`(x) = 0
+	- F(x) / F`(x) = 0
+	x - F(x) / F`(x) = x
+	g(x) = x - F(x) / F`(x)
+	g`(x) = 1 - (F`(x)F`(x) - F(x) F``(x)) / (F`(x))^2
+		  = 1 - 1 + F(x)F``(x) / (F`(x))^2
+		  = F(x)F``(x) / (F`(x))^2
+	g`(r) = (F(r)F``(r))/(F`(r))^2 = 0 as F(r) = 0
+	
+	F(x) = cos x - x = 0
+	g(x) = x - F(x)/F`(x)
+	     = x - (cos x - x)/(-sin x - 1)
+		 = x + (cos x - x)/(sin x + 1)
+		 
+		 x_0 = 1
+		 x_1 = 0.7504
+		 x_2 = 0.7391
+		 x_3 = 0.7391
+		 
+		 At n = 3 we have hit our stop criteria. Therefore r ~ 0.7391
+		 
+Taylors theorem
+	suppose: F is a C^n (n differentiable) [a, b], F^(n+1) exists on [a, b] (but doesnt need to be continious) and x_0 element in [a, b]. For every element x in [a, b] there exists a number, alpha, between x_0 and x with F(x) = P_n(x) + R_n(x) where R is a remainder function and P is a polynomial function
+	
+	P_n(x) = F(x_0) + F`(x_0)(x - x_0) + F``(x_0)(x - x_0)^2 / 2! + F^n(x_0)(x - x_0)^n/n!
+	R_n(x) = F^(n+1)(alpha)(x - x_0)^n+1 / (n+1)!
+
+Convergence of netwons method
+	Let r be the root F(r) = 0 => g(r) = r
+	error:
+		e_k = |x_k - r|
+		e_k+1 = |x_(k+1) - r| = |g(x_k) - g(r)|
+	plug into taylors theorem
+		g(x_k) = g(r) + g`(r)(x_k - r) + g``(alpha)(x_k - r)^2/2! alpha between x_k and r
+		g(x_k) = g(r) + 0 + g``(alpha)(e_k)^2/2!
+	plug back into x_k error term
+		e_k+1 = | g(r) + 1/2g``(alpha)e_k^2 - g(r)| = |1/2g``(alpha)e_k^2| = |1/2g``(alpha)| * e_k^2
+	let M be the max of max|1/2g``(x)| fo alpha between x_k and r
+		e_k+1 <= M * e_k^2 since ^2 quadratic convergence
+		
+find a method to approximate sqrt(3)
+	F(x) = x^2 - 3
+	x_0 = 1.7, error = 1.7 - sqrt(3) = 3.2 * 10^-2
+	x_1 = 1.7324, error = 1.7324 - sqrt(3) = 3.0 * 10^-4
+	x_2 = 1.7321, error = 1.7321 - sqrt(3) = 2.6 * 10^-8
+	
+Problems around point of inflection
+Problems around local max/min
+Problems when guess is a local max/min as derivative is 0
+
+{1, 2, 5, 11, 23 ... }
+
+delta a_0 = a_1 - a_0 = 2 - 1 = 1
+delta a_1 = a_2 - a_1 = 5 - 2 = 3
+delta a_2 = a_3 - a_2 = 11 - 5 = 6
+delta a_3 = a_4 - a_3 = 23 - 11 = 12
+
+delta a_n = a_n + 1
+a_n+1 = a_n + delta a_n = a_n + a_n + 1 = 2a_n + 1, n >= 1 a_0 = 1, a_1 = 2
+
+You owe $1000 on a credit card after buying Christmas gifts for your family that charges 1.5% interest each month. You pay $50 each month and you make no new charges.
+
+a_0 = 1000
+delta a_n = a_n * 0.015 - 50
+a_n+1 = a_n + delta a_n = a_n + a_n * 0.015 - 50 = 1.015 * a_n - 50
+
+excerise 3
+	delta p_n = k * p_n
+	p_n+1 - p_n = k * p_n
+	
+	delta p_n = k * p_n
+	plot (p_n+1 - p_n) = k * p_n
+	k ~ 0.44299 ~ 0.5
+	
+	delta p_n = 0.5 * p_n
+	p_n+1 = p_n + delta p_n = p_n + 0.5 * p_n = 1.5 * p_n
+	
+	from data max p_n ~ 665
+	
+	note when k is constant population grows without bound
+	
+	k = r * (Max - p_n)
+	
+	delta p_n = r(Max - p_n) * p_n
+	p_n+1 - p_n = r((665 - p_n) * p_n) plot dp_n vs (665 - p_n) * p_n
 
 
