@@ -178,7 +178,7 @@ excerise 3
 	p_n+1 - p_n = k * p_n
 	
 	delta p_n = k * p_n
-	plot (p_n+1 - p_n) = k * p_n
+	plot (p_n+1 - p_n) = p_n
 	k ~ 0.44299 ~ 0.5
 	
 	delta p_n = 0.5 * p_n
@@ -192,5 +192,23 @@ excerise 3
 	
 	delta p_n = r(Max - p_n) * p_n
 	p_n+1 - p_n = r((665 - p_n) * p_n) plot dp_n vs (665 - p_n) * p_n
+	r = 0.000797
+	
+	delta p_n = 0.000797(655 - P_n) * P_n
+	p_n+1 = p_n + 0.000797(655 - P_n) * P_n
+	
+delta a_n = c * a_n
+a_n+1 = a_n + delta a_n = a_n + c * a_n
+      = (1 + c) * an 
+	  = r * a_n where r = 1 + c
+	 
+given a_0
+a_1 = r * a_0
+a_2 = r * a_1 = r * r * a_0 = r^2 * a_0
+a_3 = r * a_2 = r ^3 * a_0
+
+conjecture a_n = r^n * a_0
+
+a_n+1 = r * a_n = r^n+1 * a_0
 
 
