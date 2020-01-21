@@ -71,17 +71,17 @@ Firstly we know that when $a_{n+1} = r*a_n + b$ then $a_n = r^n(a_0 - a) + a, a 
 
 \begin{enumerate}[(a)]
   \item \textbf{$a_{n+1} = (2/5)a_n, a_0 = 10$:} 
-$\to b = 0, r=2/5 \to a = \frac{0}{1 - r} \to a = 0$. Therefore the solution is $a_n = (2/5)^n(10)$ and the equilibrium is when $a = 0$.
+$\to b = 0, r=2/5 \to a = \frac{0}{1 - r} \to a = 0$. Therefore the solution is $a_n = (2/5)^n(10)$ and the equilibrium is when $a = 0$ and since $|r| < 1$ the solution is stable.
 
   \item \textbf{$a_{n+1} = (3/5)a_n + 100, a_0 = 20$:}
-$\to b = 100, r = 3/5 \to a = \frac{100}{1 - 3/5} = 250$. Therefore the solution is $a_n = (3/5)^n(20 - 250) + 250$ and the equilibrium is when $a = \frac{100}{1 - 3/5} = 250$.
+$\to b = 100, r = 3/5 \to a = \frac{100}{1 - 3/5} = 250$. Therefore the solution is $a_n = (3/5)^n(20 - 250) + 250$ and the equilibrium is when $a = \frac{100}{1 - 3/5} = 250$ and since $|r| < 1$ the solution is stable.
 
   \item \textbf{$a_{n+1} = (-2/3)a_n + 500, a_0 = 25$:} 
 $\to b = 500, r=-2/3 \to a = \frac{500}{1 - -2/3} \to a = 300$. 
-Therefore the solution is $a_n = (-2/3)^n(25 - 300) + 300$ and the equilbirium is when $a = \frac{500}{1 - -2/3} = 300$.
+Therefore the solution is $a_n = (-2/3)^n(25 - 300) + 300$ and the equilbirium is when $a = \frac{500}{1 - -2/3} = 300$ and since $|r| < 1$ the solution is stable.
 
   \item \textbf{$a_{n+1} = 3a_n - 30, a_0 = 0$:} 
-$\to b = -30, r=3 \to a = \frac{-30}{1 - 3} \to a = 15$. Therefore the solution is $a_n = 3^n(0 - 15) + 15$ and the equilibrium is when $a = \frac{-30}{1-3} = 15$.
+$\to b = -30, r=3 \to a = \frac{-30}{1 - 3} \to a = 15$. Therefore the solution is $a_n = 3^n(0 - 15) + 15$ and the equilibrium is when $a = \frac{-30}{1-3} = 15$ and since $|r| > 1$ the solution is unstable.
 \end{enumerate}
 
 \item 
@@ -109,7 +109,7 @@ y_{n+1} = cy_n + dx_ny_n
 
 Then the system has two fixed points (0,0) and $(\frac{1-c}{d},\frac{a-1}{b})$. 
 
-In our case this gives equilibrium values of $(\frac{1-c}{d},\frac{a-1}{b}) \to (\frac{1 - 0.6}{0.0004}, \frac{1.3 - 1}{0.002}) \to (1000, 150)$ and the solution $(0,0)$. 
+In our case this gives equilibrium values of $(\frac{1-c}{d},\frac{a-1}{b}) \to (\frac{1 - 0.6}{0.0004}, \frac{1.3 - 1}{0.002}) \to (1000, 150)$ and the trivial solution of $(0,0)$. 
 \item
 \textbf{Predict the long-term outcome if $M_0 = 1200$ and $O_0 = 100$}
 \\
