@@ -62,7 +62,7 @@ x_3 = g(0.865684) = 0.865474 \\
 x_4 = g(0.865474) = 0.865474 \\
 \end{gather*}
 
-Check $f(0.865474) \simeq -9.96 * 10^{-8}$ which is very close to 0 therefore okay and the root solution to the intersection of the curves is $x = 0.865474$.
+Check $f(0.865474) \simeq -9.96 * 10^{-8}$ which is very close to 0 therefore okay, in addition $x^3 = 0.865474^3 \simeq 0.65 \simeq cos(0.865464) = cos(x)$, and the root solution to the intersection of the curves is $x = 0.865474$.
 
 \item
 \textbf{Solve the following dynamical systems. Find and classify any equilibria.:}
@@ -92,16 +92,35 @@ M_{n+1} = 1.3M_n - 0.002O_nM_n \\
 O_{n+1} = 0.6O_n + 0.0004O_nM_n
 \end{gather*}
 
+These equations can be rewritten as the following
+
+\begin{gather*}
+M_{n+1} = M_n + \Delta M_n, \Delta M_n = M_n(0.3 - 0.002O_n) \\
+O_{n+1} = O_n + \Delta O_n, \Delta O_n = O_n(-0.4 + 0.0004M_n)
+\end{gather*}
+
 \begin{enumerate}[(a)]
 \item
 \textbf{What type of interaction is this ? How do the coefficients tell us ?:} \\
 $M_{n+1} = \underbrace{1.3}_{\text{Mouse population grows if no owls}}M_n - \underbrace{0.002}_{\text{Mouse population decreases with presence of owls}}O_nM_n$ \\
 $O_{n+1} =  \underbrace{0.6}_{\text{Owl population decreases if no mice}}O_n + \underbrace{0.0004}_{\text{Owl population increased by presence of mice}}O_nM_n$ \\
 
-Based on the coefficients this is a predator prey interaction.
+The above mentioned interactions can also be seen from the $\Delta$ Equations. \\
+$\Delta M_n = M_n(\underbrace{0.3}_{\text{Unbounded growth in mouse population in absence of predator}} - \underbrace{0.002}_{\text{Predator population decreases mouses growth rate}}O_n) $\\
+$\Delta O_n = O_n(\underbrace{-0.4}_{\text{Absence of prey causes predators to die off}} + \underbrace{0.0004}_{\text{The more prey the more the growth rate of the predator increases}}M_n)$
+
+Based on the coefficients this is a predator prey interaction as the Mice populations growth rate is decreased by an increase in the population of Owls.
 \item
-\textbf{Find the equilibrium values ?}
+\textbf{Find the equilibrium values ?} \\
 As taught in class when we have a system of equtions as follows:
+
+\begin{gather*}
+\Delta N_n = 0 = N(a - bP) \to N = 0 \text{ or } P = \frac{a}{b} \\
+\Delta P_n = 0 = P(cN - d) \to P = 0 \text{ or } N = \frac{d}{c}
+\end{gather*}
+
+Then the system has two fixed/equilbriums $(P,N) \to$ (0,0) and ($\frac{a}{b}$, $\frac{d}{c}$). Alternatively this can be rewritten using the original equations as follows:
+
 \begin{gather*}
 x_{n+1} = ax_n-bx_ny_n \\
 y_{n+1} = cy_n + dx_ny_n
@@ -109,7 +128,15 @@ y_{n+1} = cy_n + dx_ny_n
 
 Then the system has two fixed points (0,0) and $(\frac{1-c}{d},\frac{a-1}{b})$. 
 
-In our case this gives equilibrium values of $(\frac{1-c}{d},\frac{a-1}{b}) \to (\frac{1 - 0.6}{0.0004}, \frac{1.3 - 1}{0.002}) \to (1000, 150)$ and the trivial solution of $(0,0)$. 
+In our case this gives equilibrium values of $(M,O) \to (\frac{1-c}{d},\frac{a-1}{b}) \to (\frac{1 - 0.6}{0.0004}, \frac{1.3 - 1}{0.002}) \to (1000, 150)$ or $(\frac{a}{b}, \frac{d}{c}) \to (\frac{0.4}{0.0004}, \frac{0.3}{0.002}) \to (1000, 150)$ and the trivial solution of $(0,0)$.  \\ \\
+
+Putting in $M_0 = 1000$ and $O_0 = 150$ back into the equations to confirm they are indeed the equilbiriums.
+
+$M_1 = 1.3 * M_0 - 0.002 * O_0 * M_0 = 1.3 * 1000 - 0.002 * 150 * 1500 = 1000$
+$O_1 = 0.6 * O_0 + 0.0004 * O_0 * M_0 = 0.6 * 150 + 0.0004 * 150 * 1000 = 150$.
+
+Therefore $(1000, 150)$ is an equilibrium value and its trivial to see $(0,0)$ is obviously an equilibrium value.
+
 \item
 \textbf{Predict the long-term outcome if $M_0 = 1200$ and $O_0 = 100$}
 \\

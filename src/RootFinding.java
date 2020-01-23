@@ -117,8 +117,8 @@ public class RootFinding {
 		
 		
 		// owl/mouse
-		double mouse = 1200;
-		double owl = 100;
+		double mouse = 1000;
+		double owl = 150;
 		
 		for(int i = 0; i < 100; i++) {
 			System.out.println("m_" + i + ": " + mouse + " o_" + i + ": " + owl);
