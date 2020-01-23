@@ -212,3 +212,6 @@ conjecture a_n = r^n * a_0
 a_n+1 = r * a_n = r^n+1 * a_0
 
 
+(P, N) -> (0,0) and (a/b, c/d)
+
+
