@@ -215,3 +215,78 @@ a_n+1 = r * a_n = r^n+1 * a_0
 (P, N) -> (0,0) and (a/b, c/d)
 
 
+
+Excerise 2
+P(x) = 1/22 x^2 - 35/88 x + 49/44
+P(3) = 0.32955
+
+Excerise 3
+F(x) = x^-1
+F`(x) = -x^-2
+F``(x) = 2x^-3
+F```(x) = -6x^-4
+
+
+The LP has error term F```(alpha) / (3!) * (x - x_0)....(x - x_n)
+= -6(alpha)^4 / 6 * (x - x_0) ... (x - x_n)
+= -(alpha)^4 * (x - x_0) ... (x - x_n)
+
+alpha is between 2 and 4
+
+Let g(x) = (x - x_0)....(x - x_n) = x^3 - 35/4x^2 + 49/2x - 22
+
+To find max value g`(x) = 3x^2 - 70/4x + 49/2 = 0
+	= 1/2(3x - 7)(2x - 7) 
+	x = 7/3 and 3.5
+	g(x) = 25/108 and g(x) = -9/16
+	
+	x = 3.5 gives us biggest |g(x)|
+	
+|F```(alpha)|(9/16)
+|-1/alpha^4|(9/16)
+largest is when alpha = 2
+
+= 1 / 16 * 9 /16 = 9 / 256
+
+max possible error
+
+
+excerise 4
+
+x y first second third fourth
+0 0
+2 4  2
+4 16 6  1
+6 36 10 1 0
+8 64 14 1 0 0
+
+P(x) = 0 + 2(X-0) + 1(X-0)(X-2) + 0(X-0)(X-2)(X-4) + 0(X-0)(X-2)(X-4)(X-6)
+	 =  2x + x^2 - 2x
+	 = x^2
+
+	 
+Side note
+	F(x) = x^2
+	F`(x) = 2x
+	F``(x) = 2
+	F```(x) = 0
+	
+	
+Excerise 5
+x y  1 2    3    4
+0 [0]
+1 2  [2]
+2 5  3 [0.5]  
+3 8  3 0    [-1/6]
+4 10 2 -0.5 -1/6 [0]
+
+
+P(x) = 0
+ + 2(X-0)
+ + 0.5(X-0)(X-1)
+ + -1/6(X-0)(X-1)(X-2)
+
+
+
+
+
