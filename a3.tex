@@ -23,15 +23,14 @@
 \begin{enumerate}[1.]
 
 
-\item \textbf{Use Simpson’s Rule with 4 subintervals to approximate Z 1
-$\int_{0}^{1} \frac{2}{1+x^2} dx$ to 6 decimal places.
+\item \textbf{Use Simpson’s Rule with 4 subintervals to approximate $\int_{0}^{1} \frac{2}{1+x^2} dx$ to 6 decimal places.
 Compare your result with the true value by calculating the simple error, ie $|true - approx|$.}
 
-$h = \frac{1 - 0}{4} = 0.25 \Rightarrow x_0 = 0, x_1 = 0.25, x_2 = 0.5, x_3 = 0.75, x_4 = 1$
+4 subintervals thus $h = \frac{1 - 0}{4} = 0.25 \Rightarrow x_0 = 0, x_1 = 0.25, x_2 = 0.5, x_3 = 0.75, x_4 = 1$
 
 $\int_{0}^{1} \frac{2}{1+x^2} dx \simeq \frac{h}{3}[ \frac{2}{1 + 0^2} + 4\frac{2}{1+0.25^2} + 2\frac{2}{1+0.5^2} + 4\frac{2}{1+0.75^2} + \frac{2}{1+1^2}] = 1.570784$
 
-True value of $\int_{0}^{1} \frac{2}{1+x^2} dx = 1.570796$
+True value of $\int_{0}^{1} \frac{2}{1+x^2} dx = 2 * \arctan(1) - 2 * \arctan(0) = 1.570796$
 
 $Error = |true - approx| = |1.570796 -  1.570784| = 0.000012$
 
@@ -46,11 +45,18 @@ $\int_{0}^{1} \cos^2x dx = \frac{1}{2} \int_{-1}^{1} \cos^2(\frac{1}{2}(t+1)) dt
 0.6521451549\cos^{2}\left(\frac{1}{2}\left(-0.3399810436+1\right)\right)] = 0.727324318763 \simeq 0.727324
 $
 
-True value of $\int_{0}^{1} \cos^2x dx = 0.727324$
+True value of $\int_{0}^{1} \cos^2x dx = \frac{\cos(1)\sin(1) + 1}{2} - \frac{\cos(0)\sin(0) + 0}{2} =  0.727324$
 
 $Error = |true - approx| = 0.727324 - 0.727324 = 0$. Excellent approximation. 
 
 \item \textbf{Use Monte Carlo simulation to approximate the probability of three tails occurring when four fair coins are flipped. Do a sufficient number of trials to have a meaningful result.}
+
+Python 3 code: \\
+\begin{center}
+\includegraphics{a3_q3}
+\end{center}
+
+The true probability of 3 tails occuring in four fair coins is $4/16$ and this simulation is very close to that value.
 
 \item \textbf{Given the loaded (unfair) dice probabilities below, use Monte Carlo simulation to simulate the results of ten rolls of the dice \\
 \begin{tabular}{ c | c c c c c c}
@@ -61,6 +67,13 @@ die 1 & 0.1 & 0.1 & 0.2 & 0.3 & 0.2 & 0.1 \\
 die 2 & 0.3 & 0.1 & 0.2 & 0.1 & 0.05 & 0.25 \\
 \end{tabular}
 }
+
+Python 3 code: \\
+\begin{center}
+\includegraphics{a3_q4}
+\end{center}
+
+The average result of throwing each of the dies 10 times is 69.4525. 
 
 \end{enumerate}
 \end{document}
