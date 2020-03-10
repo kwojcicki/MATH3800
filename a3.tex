@@ -38,6 +38,11 @@ Very close to 0.
 
 \item \textbf{Use Gaussian Quadrature with 4 steps to approximate} $\int_{0}^{1} \cos^2x dx$ \textbf{to 6 decimal places}
 
+First change the interval from $0$ to $1 \Rightarrow -1$ to $1$.
+
+$x = \frac{b - a}{2} * t + \frac{b + a}{2} \Rightarrow x = (1/2)t + 1/2 = (1/2)(t + 1)$ \\
+$dx = 1/2 dt$
+
 $\int_{0}^{1} \cos^2x dx = \frac{1}{2} \int_{-1}^{1} \cos^2(\frac{1}{2}(t+1)) dt \simeq \frac{1}{2}\sum_{j=1}^{4}{A_j \cos^2(\frac{1}{2}(t_j+1)} = \frac{1}{2}[
 0.3478548451\cos^{2}\left(\frac{1}{2}\left(0.8611363116+1\right)\right) + 
 0.3478548451\cos^{2}\left(\frac{1}{2}\left(-0.8611363116+1\right)\right) + \\
