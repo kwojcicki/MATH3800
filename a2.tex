@@ -21,160 +21,107 @@
 \maketitle
 
 \begin{enumerate}[1.]
-\item
+
+\item \textbf{Use Least-Squares to fit a straight line, $y = ax + b$, to the data. Plot the data and the
+line. Caclulate R2 and comment on the quality of the fit. \\
+\begin{tabular}{ c | c c c c c c}
+x              & 1 & 3 & 4 & 7 & 10  & 12 \\
+\hline
+y & 2.16 & 9.42 & 13.05 & 23.77 & 34.58 & 41.83  \\
+\end{tabular}} 
+
+\includegraphics[width= 0.95\textwidth]{a2_q1_data} \\
+\includegraphics{a2_q1_graph} \\
+\includegraphics{a2_q1_python}
+
+As we can see from the value of $R^2$ and the plot of the data, the fit is excellent.
+
+\item \textbf{Use Least-Squares to fit a curve, $y = ae^{bx}$, to the appropriate transformation of the data.
+Plot the data and the curve. Caclulate $R^2$ and comment on the quality of the fit. \\
+\begin{tabular}{ c | c c c c c c}
+x              & 0.5 & 1 & 1.7 & 2.2 & 3  & 3.6 \\
+\hline
+y & 0.425 & 0.605 & 0.987 & 1.400 & 2.448 & 3.728  \\
+\end{tabular}}
+
+\includegraphics[width= 0.95\textwidth]{a2_q2_data} \\
+\includegraphics{a2_q2_graph} \\
+\includegraphics{a2_q1_python}
+
+The $R^2$ on the transformed/linear data is excellent  and once again the fit is excellent.
+
+\item \textbf{
+Use the Ladder of Powers Transformations to determine if a simple/one-term model
+would be an appropriate fit. Which functional form seems best ? (You do not have to fit the
+curve.) \\
+\begin{tabular}{ c | c c c c c c c c c c }
+x              & 1 & 2 & 3 & 4 & 5  & 6 & 7 & 8 & 9 & 10 \\
+\hline
+y & 0 & 4.27 & 6.82 & 8.60 & 10 & 11.13 & 12.04 & 12.88 & 13.61 & 14.25  \\
+\end{tabular}}
+
+\includegraphics[width= 0.95\textwidth]{a2_q3_data} \\
+\includegraphics{a2_q3_org} \\
+
+Data is increasing and concave down, so we will try $x \Rightarrow \sqrt{x}, log(x), ...$ on $y \Rightarrow y, y^2$
+
+\includegraphics{a2_q3_graph1} \\
+\includegraphics{a2_q3_graph2} \\
+\includegraphics{a2_q3_graph3} \\
+\includegraphics{a2_q3_graph4}
 
 
-(0, 0), (2, 5), (4, 7)
-\begin{gather*}
+\item \textbf{Consider the data below. Construct a divided difference table and determine if a
+low-order polynomial would be appropriate as an empirical model. \\
+\begin{tabular}{ c | c c c c c c c c }
+x              & 0 & 1 & 2 & 3 & 4 & 5  & 6 & 7 \\
+\hline
+y & 1 & 4.5 & 20 & 90 & 403 & 1808 & 8103 & 36316 \\
+\end{tabular}}
+
+\includegraphics{a2_q4}
+
+From the divided difference table we can see that there is no column that is relatively constant (or relatively close to 0). So we can conclude that a low order polynomial would not be appropriate for this data.
+
+\item \textbf{ Find the natural cubic spline for the points (0, 0),(2, 5) and (4, 7).}
+
+\includegraphics{a2_q5} \\
+
+\begin{gather} \label{eq:1}
 y_1 = S_1(x_1) : 0 = a_1 \\
 y_2 = S_1(x_2) : 5 = a_1 + 2b_1 + 4c_1 + 8d_1 \\
 y_2 = S_2(x_2) : 5 = a_2 + 2b_2 + 4c_2 + 8d_2 \\
-y_3 = S_2(x_3) : 7 = a_2 + 4b_2 + 16c_3 + 64d_2 \\
-S_1\prime(x) = b_1 + 2xc_1 + 3x^2d_1 \\
-S_2\prime(x) = b_2 + 2xc_2 + 3x^2d_2 \\
-S_1\prime\prime(x) = 2c_1 + 6xd_1 \\
-S_2\prime\prime(x) = 2c_2 + 6xd_2 \\
+y_3 = S_2(x_3) : 7 = a_2 + 4b_2 + 16c_2 + 64d_2 \\
+S_1\prime(x) = b_1 + 2xc_1 + 3x^2d_1 \nonumber \\
+S_2\prime(x) = b_2 + 2xc_2 + 3x^2d_2 \nonumber \\
+S_1\prime\prime(x) = 2c_1 + 6xd_1 \nonumber \\
+S_2\prime\prime(x) = 2c_2 + 6xd_2 \nonumber \\
 S_1\prime(x_2)  = S_2\prime(x_2):  b_1 + 4c_1 + 12d_1 = b_2 + 4c_2 + 12d_2\\
 S_1\prime\prime(x_2) = S_2\prime\prime(x_2) : 2c_1 + 12d_1 = 2c_2 + 12d_2\\
 S_1\prime\prime(x_1) = 0 : 2c_1 + 0 = 0 \\
-S_2\prime\prime(x_3) = 0 : 2c_2 + 24d_2 = 0 \\
-\end{gather*}
+S_2\prime\prime(x_3) = 0 : 2c_2 + 24d_2 = 0
+\end{gather}
 
-$a_1 = 0$
-$c_1 = 0$
-$c_2 = 12d_1$
-$d_1 = -d_2$
+From (1) $\Rightarrow a_1 = 0$ \\
+From (7) $\Rightarrow c_1 = 0$ \\
+Substitute $c_1 = 0$ into (6) $\Rightarrow 12d_1 = 2c_2 + 12d_2 \Rightarrow d_1 = -d_2$ and $c_2 = -12d_2$\\
+Substitute $c_1 = 0, d_1 = -d_2$ into (5) $\Rightarrow b_1 + 12d_1 = b_2 + 4c_2 + 12d_2 \Rightarrow b_1 - b_2 = -24d_2 \Rightarrow b_1 = b_2 - 24d_2, b_2 = b_1 + 24d_2$ \\
+Substitute $a_1 = 0, c_1 = 0, b_1 = b_2 - 24d_2, d_1 = -d_2$ into (2) and (3) $\Rightarrow 2b_2 - 48d_2 - 8d_2 = a_2 + 2b_2 - 40d_2 \Rightarrow a_2 = -16d_2$ \\
+Substittue $a_2 = -16d_2, c_2 = -12d_2$ into (4) $\Rightarrow 7 = -16d_2 + 4b_2 + 16(-12d_2) + 64d_2 \Rightarrow b_2 = \frac{7}{4} + 36d_2$ \\
+Substitute $b_2 = \frac{7}{4} + 36d_2$ into $b_2 = b_1 + 24d_2 \Rightarrow \frac{20}{7}(b_1 - 12d_2) = 5$ \\
+Substitute $ \frac{20}{7}(b_1 - 12d_2) = 5, a_1 = 0, c_1 = 0, d_1 = -d_2$ into (2) $\Rightarrow \frac{20}{7}b_1 - \frac{240}{7}d_2 = 2b_1 - 8d_2 \Rightarrow b_1 = \frac{92}{3}d_2$ \\
+Substitute $b_1 = 92/3d_2$ into $b_1 - 12d_2 = \frac{7}{4} \Rightarrow d_2 = \frac{3}{32}$ \\
 
+Therefore $a_1 = 0, b_1 = (92/3) * (3/32) = \frac{23}{8}, c_1 = 0, d_1 = -\frac{3}{32}, a_2 = -16 * (3/32) = -1.5, b_2 = \frac{23}{8} + 24 * (3/32) = \frac{41}{8}, c_2 = -12 * \frac{3}{32} = -\frac{9}{8}, d_2 = \frac{3}{32}$
 
+Giving us
+$\begin{cases} 
+S_1(x) = \frac{23}{8}x - \frac{3}{32}x^3, 0 \leq x \leq 2 & \\
+S_2(x) = -1.5 + \frac{41}{8}x - \frac{9}{8}x^2 + \frac{3}{32}x^3, 2 \leq x \leq 4
+\end{cases}
+$
 
-
-
-
-\textbf{Verify that $f(x) = x^3 +8x - 7$ has a root in $[0,1]$.  Use fixed-point iteration to find this
-root to 5 decimal places. Start with $x_0 = 0.75$, but verify that your chosen $g(x)$ will work
-before you begin.:}
-
-First verify that $f(a) * f(b) < 0$. \\
-$f(0) = 0^3 + 8 * 0 - 7 = -7, f(1) = 1^3 + 8 * 1- 7 = 2 \to f(a) * f(b) \to -7 * 2 < 0$. \\
-Therefore since there is a sign change there must also be a root in the interval $[0,1]$.
-
-$f(x) = x^3 + 8x - 7 \to \frac{7 - x^3}{8}$. Take $g(x) = \frac{7 - x^3}{8}$
-
-Since $|g\prime(x)| = |\frac{-3x^2}{8}| = |-\frac{3}{8}x^2|  \leq \frac{3}{8} < 1$ on $[0,1]$ then $x_{n+1} = g(x_n)$ will generate a convergent sequence.
-
-\begin{gather*}
-x_0 = 0.75, x_1 = g(0.75) = \frac{7 - 0.75^3}{8} = 0.82227 \\
-x_2 = g(0.82227) = 0.80551 \\
-x_3 = g(0.80551) = 0.80967 \\
-x_4 = g(0.80967) = 0.80865 \\ 
-x_5 = g(0.80865) = 0.80890 \\
-x_6 = g(0.80890) = 0.80884 \\
-x_7 = g(0.80884) = 0.80885 \\
-x_8 = g(0.80885) = 0.80885
-\end{gather*}
-
-Check $f(0.80885) \simeq -0.00002$ therefore very close to 0 and the root is 0.80885.
-
-\item
-\textbf{Use Newton’s Method to find the point of intersection of the curves $y = x^3$ and $y = cos(x)$ to 6 decimal places. Start with $x_0 = 1$:}
-
-If $x^3 = cos(x)$ then $f(x) = x^3 - cos(x) = 0$. So $f\prime(x) = 3x^2 + sin(x)$.
-
-So $x_{n+1} = x_n - \frac{f(x_n)}{f\prime(x_n)} = x_n - \frac{x^3 - cos(x)}{3x^2 + sin(x)} = \frac{2x^3 + x * sin(x) + cos(x)}{3x^2 + sin(x)}$
-
-\begin{gather*}
-x_0 = 1, x_1 = \frac{2* 1^3 + 1 * sin(1) + cos(1)}{3 * 1^2 + sin(1)} = 0.880333 \\
-x_2 = g(0.880333) = 0.865684 \\
-x_3 = g(0.865684) = 0.865474 \\
-x_4 = g(0.865474) = 0.865474 \\
-\end{gather*}
-
-Check $f(0.865474) \simeq -9.96 * 10^{-8}$ which is very close to 0 therefore okay, in addition $x^3 = 0.865474^3 \simeq 0.65 \simeq cos(0.865464) = cos(x)$, and the root solution to the intersection of the curves is $x = 0.865474$.
-
-\item
-\textbf{Solve the following dynamical systems. Find and classify any equilibria.:}
-
-Firstly we know that when $a_{n+1} = r*a_n + b$ then $a_n = r^n(a_0 - a) + a, a = \frac{b}{1-r}$ if $r \neq 1$.
-
-\begin{enumerate}[(a)]
-  \item \textbf{$a_{n+1} = (2/5)a_n, a_0 = 10$:} 
-$\to b = 0, r=2/5 \to a = \frac{0}{1 - r} \to a = 0$. Therefore the solution is $a_n = (2/5)^n(10)$ and the equilibrium is when $a = 0$ and since $|r| < 1$ the solution is stable.
-
-  \item \textbf{$a_{n+1} = (3/5)a_n + 100, a_0 = 20$:}
-$\to b = 100, r = 3/5 \to a = \frac{100}{1 - 3/5} = 250$. Therefore the solution is $a_n = (3/5)^n(20 - 250) + 250$ and the equilibrium is when $a = \frac{100}{1 - 3/5} = 250$ and since $|r| < 1$ the solution is stable.
-
-  \item \textbf{$a_{n+1} = (-2/3)a_n + 500, a_0 = 25$:} 
-$\to b = 500, r=-2/3 \to a = \frac{500}{1 - -2/3} \to a = 300$. 
-Therefore the solution is $a_n = (-2/3)^n(25 - 300) + 300$ and the equilbirium is when $a = \frac{500}{1 - -2/3} = 300$ and since $|r| < 1$ the solution is stable.
-
-  \item \textbf{$a_{n+1} = 3a_n - 30, a_0 = 0$:} 
-$\to b = -30, r=3 \to a = \frac{-30}{1 - 3} \to a = 15$. Therefore the solution is $a_n = 3^n(0 - 15) + 15$ and the equilibrium is when $a = \frac{-30}{1-3} = 15$ and since $|r| > 1$ the solution is unstable.
-\end{enumerate}
-
-\item 
-\textbf{Suppose that Owls have Mice for their primary food source in a wildlife sanctuary. If $M_n$ is the Mouse population after $n$ years and $O_n$ is the Owl, the following model has been suggested:}
-
-\begin{gather*}
-M_{n+1} = 1.3M_n - 0.002O_nM_n \\
-O_{n+1} = 0.6O_n + 0.0004O_nM_n
-\end{gather*}
-
-These equations can be rewritten as the following
-
-\begin{gather*}
-M_{n+1} = M_n + \Delta M_n, \Delta M_n = M_n(0.3 - 0.002O_n) \\
-O_{n+1} = O_n + \Delta O_n, \Delta O_n = O_n(-0.4 + 0.0004M_n)
-\end{gather*}
-
-\begin{enumerate}[(a)]
-\item
-\textbf{What type of interaction is this ? How do the coefficients tell us ?:} \\
-$M_{n+1} = \underbrace{1.3}_{\text{Mouse population grows if no owls}}M_n - \underbrace{0.002}_{\text{Mouse population decreases with presence of owls}}O_nM_n$ \\
-$O_{n+1} =  \underbrace{0.6}_{\text{Owl population decreases if no mice}}O_n + \underbrace{0.0004}_{\text{Owl population increased by presence of mice}}O_nM_n$ \\
-
-The above mentioned interactions can also be seen from the $\Delta$ Equations. \\
-$\Delta M_n = M_n(\underbrace{0.3}_{\text{Unbounded growth in mouse population in absence of predator}} - \underbrace{0.002}_{\text{Predator population decreases mouses growth rate}}O_n) $\\
-$\Delta O_n = O_n(\underbrace{-0.4}_{\text{Absence of prey causes predators to die off}} + \underbrace{0.0004}_{\text{The more prey the more the growth rate of the predator increases}}M_n)$
-
-Based on the coefficients this is a predator prey interaction as the Mice populations growth rate is decreased by an increase in the population of Owls.
-\item
-\textbf{Find the equilibrium values ?} \\
-As taught in class when we have a system of equtions as follows:
-
-\begin{gather*}
-\Delta N_n = 0 = N(a - bP) \to N = 0 \text{ or } P = \frac{a}{b} \\
-\Delta P_n = 0 = P(cN - d) \to P = 0 \text{ or } N = \frac{d}{c}
-\end{gather*}
-
-Then the system has two fixed/equilbriums $(P,N) \to$ (0,0) and ($\frac{a}{b}$, $\frac{d}{c}$). Alternatively this can be rewritten using the original equations as follows:
-
-\begin{gather*}
-x_{n+1} = ax_n-bx_ny_n \\
-y_{n+1} = cy_n + dx_ny_n
-\end{gather*}
-
-Then the system has two fixed points (0,0) and $(\frac{1-c}{d},\frac{a-1}{b})$. 
-
-In our case this gives equilibrium values of $(M,O) \to (\frac{1-c}{d},\frac{a-1}{b}) \to (\frac{1 - 0.6}{0.0004}, \frac{1.3 - 1}{0.002}) \to (1000, 150)$ or $(\frac{a}{b}, \frac{d}{c}) \to (\frac{0.4}{0.0004}, \frac{0.3}{0.002}) \to (1000, 150)$ and the trivial solution of $(0,0)$.  \\ \\
-
-Putting in $M_0 = 1000$ and $O_0 = 150$ back into the equations to confirm they are indeed the equilbiriums.
-
-$M_1 = 1.3 * M_0 - 0.002 * O_0 * M_0 = 1.3 * 1000 - 0.002 * 150 * 1500 = 1000$ \\
-$O_1 = 0.6 * O_0 + 0.0004 * O_0 * M_0 = 0.6 * 150 + 0.0004 * 150 * 1000 = 150$. \\
-
-Therefore $(1000, 150)$ is an equilibrium value and its trivial to see $(0,0)$ is obviously an equilibrium value.
-
-\item
-\textbf{Predict the long-term outcome if $M_0 = 1200$ and $O_0 = 100$}
-\\
-\includegraphics{mousecode} \\
-\includegraphics{mouseoutput_p1} \\ 
-\includegraphics{mouseoutput_p2} \\
-\includegraphics{mouseoutput_p3} \\
-
-As can be seen from the above screenshots. There is first some cycling in the populations and at $n = 29$ the mice are completely wiped out, afterwards the owls die off as well due to the fact there are no mice left.
-
-\end{enumerate}
+Check to ensure that given points are in the cubic spine function created. And indeed $S_1(0) = 0, S_1(2) = 5, S_2(2) = 5, S_2(4) = 7$.
 
 \end{enumerate}
 \end{document}
