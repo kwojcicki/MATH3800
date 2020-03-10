@@ -286,7 +286,118 @@ P(x) = 0
  + 0.5(X-0)(X-1)
  + -1/6(X-0)(X-1)(X-2)
 
+ 
+ 
+|E_m| <= 1/24 * M_m (b-a)* h^2
+M_m = max |F``(x)| for a <= x <= b error of order delta x^2
+
+|E_t| <= 1/12 * M_t * (b-a) * h^2 
+M_t = max |F``(x)| for a <= x <= b  error also of order delta x^2
 
 
 
+Excerise: intergral 0 to pi of (sinx dx) with n = 6
 
+we know the actual solution is = 2
+
+1. Midpoint n = 6
+	x_0 = 0, x_1 = pi/6, x_2 = pi/3, x_3 = pi/2, x_4 = 2pi/3, x_5 = 5pi/6, x_6 = pi
+	
+	midpoints
+	x_1* = pi/12
+	x_2* = pi/4
+	x_3* = 5pi/12
+	x_4* = 7pi/12
+	x_5* = 3pi/4
+	x_6* = 11pi/12
+	
+	
+	integral ~= pi/6 ( sin(pi/12) + sin(pi/4) + sin(5pi/12) + sin(7pi/12) + sin(3pi/4) + sin(11pi/12))
+	= 2.023030 
+	
+	error = |2 - 2.023030| = 0.023030
+
+2. Trapezoid ule
+	integral ~= pi/6[ (sin(0) + sin(pi/6)) / 2 + (sin(pi/6) + sin(pi/3))/2 + (sin(pi/3) + sin(pi/2))/2 + (sin(pi/2) + sin(2pi/3))/2 + (sin(2pi/3) + sin(5pi/6))/2 + (sin(5pi/6) + sin(pi))/ 2 ]
+	
+	~= pi/12[ sin(0) + 2sin(pi/6) + 2sin(pi/3) + 2sin(pi/2) + 2sin(2pi/3) + 2sin(5pi/6) + sin(pi) ]
+	
+	= 1.954097
+	
+	error = |2 - 1.954097| = 0.045903
+	
+3. Simpsons ~= h/3[ sin(0) + 4sin(pi/6) + sin(pi/3) +
+					sin(pi/3) + 4sin(pi/2) + sin(2pi/3) +
+					sin(2pi/3) + 4sin(5pi/6) + sin(pi) ]
+			
+			h = pi / 3
+			
+	~= 2.000863 
+			
+	error = |0.000863|
+	
+
+method : exact for degree
+	midpoint 1
+	trap 1
+	simpsons 3
+	GQ 2n - 1
+	
+integral of -1 to 1 of e^xcos dx
+	~= 0.5 * e^0.77459666 * cos(0.77) +
+		0.8 * e^0 * cos(0) +
+		0.5 * e^(-0.77) * cos(-0.77) +
+		~= 1.9333904
+		
+integral of 0 to pi of sinx dx
+	first change interval
+		x = (b - a / 2)t + (b + a / 2)
+		
+		0 to pi -> -1 to 1
+		x = pi/2 t + pi/2 = pi/2(t + 1)
+		dx = pi/2 dt
+	second build new interval
+		g(x) = sin(x)
+		F(t) = sin(pi/2(t + 1))
+		integral = (pi/2) integral -1 to 1 of sin(pi/2(t+1)) dt
+		~= pi/2[ C_1F(t_1) + C_2F(t_2) + C_3F(t_3)]
+		~= 2.0001389 
+		error = 0.001389
+		
+		
+seed 7317
+	(x_0)^2 = 53538489 = 5384
+	(x_1)^2 = 28987456 = 9874
+	
+seed 2041
+	x_0 = 2041
+	x_1 = 1656
+	x_2 = 7423
+	x_3 = 1009
+	....
+	x_8 = 80
+	x_9 = 64
+	x_10 = 40
+	x_11 = 16
+	x_12 = 2
+	x_13 = 0
+	x_14 = 0
+	
+	can generate 13 #s if counting 0 and not counting seed
+	
+seed x_0 = 7, a = 1, b = 7, c = 10
+	x_n+1 = (1 * X_n + 7) mod 10
+	x_1 = 4
+	x_2 = (4 + 7 mod 10) = 1
+	x_3 = 8
+	x_4 = 5
+	x_5 = 2
+	x_6 = 9
+	x_7 = 6
+	x_8 = 3
+	x_9 = 0
+	
+
+	
+30872
+3234
